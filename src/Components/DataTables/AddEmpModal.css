@@ -1,0 +1,54 @@
+/* .modal-container {
+    position:fixed;
+    padding: 3rem;
+    border-radius: 2px;
+    z-index:1;
+    left: 0;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: rgb(141, 114, 157);;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  } */
+  
+  .modal {
+    border-radius: 2px;
+    padding: 5rem;
+    background-color: rgb(141, 114, 157);
+    text-align: left;
+  } 
+  
+  .modal .btn {
+    display: block;
+    margin: auto;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    border: 1px solid rgb(196, 176, 204);
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    font-size: .75rem;
+  }
+  
+  .form-group label {
+    margin-bottom: 0.2rem;
+  }
+  
+  .error {
+    background-color: #f8d7da;
+    color: #df4759;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+  }

@@ -1,0 +1,148 @@
+{
+  "data": [
+    {
+      "0": {
+        "id": "1001",
+        "imgUrl": "../public/images/img1.png",
+        "firstName": "Casimir",
+        "lastName": "Kovacek",
+        "email": "Casimir.Kovacek@dummyapis.com",
+        "contactNumber": 4445097507,
+        "age": "35",
+        "dob": "28/05/1991",
+        "salary": 1000000,
+        "address": "address1"
+      },
+      "1": {
+        "id": "1002",
+        "imgUrl": "../public/images/img2.png",
+        "firstName": "Angelica",
+        "lastName": "Schuster",
+        "email": "Angelica.Schuster@dummyapis.com",
+        "contactNumber": 4605199914,
+        "age": 69,
+        "dob": "24/07/1954",
+        "salary": 2000000,
+        "address": "address2"
+      },
+      "2": {
+        "id": "1003",
+        "imgUrl": "../public/images/img3.png",
+        "firstName": "Aurelio",
+        "lastName": "Stroman",
+        "email": "Aurelio.Stroman@dummyapis.com",
+        "contactNumber": 4160894636,
+        "age": 68,
+        "dob": "29/05/1955",
+        "salary": 300000,
+        "address": "Address3"
+      },
+      "3": {
+        "id": "1004",
+        "imgUrl": "../public/images/img4.png",
+        "firstName": "Enamue",
+        "lastName": "White",
+        "email": "Aurelio.Stroman@dummyapis.com",
+        "contactNumber": 4160894636,
+        "age": 68,
+        "dob": "29/05/1955",
+        "salary": 300000,
+        "address": "Address4"
+      },
+      "4": {
+        "id": "1005",
+        "imgUrl": "../public/images/img1.png",
+        "firstName": "Casimir",
+        "lastName": "Kovacek",
+        "email": "Casimir.Kovacek@dummyapis.com",
+        "contactNumber": 4445097507,
+        "age": 32,
+        "dob": "28/05/1991",
+        "salary": 1000000,
+        "address": "address1"
+      },
+      "5": {
+        "id": "1006",
+        "imgUrl": "../public/images/img2.png",
+        "firstName": "Angelica",
+        "lastName": "Schuster",
+        "email": "Angelica.Schuster@dummyapis.com",
+        "contactNumber": 4605199914,
+        "age": 69,
+        "dob": "24/07/1954",
+        "salary": 2000000,
+        "address": "address2"
+      },
+      "id": "1001",
+      "imgUrl": "../public/images/img1.png",
+      "firstName": "Casimir",
+      "lastName": "Kovacek",
+      "email": "Casimir.Kovacek@dummyapis.com",
+      "contactNumber": 4445097507,
+      "age": 32,
+      "dob": "28/05/1991",
+      "salary": 1000000,
+      "address": "address1"
+    },
+    {
+      "id": "1002",
+      "imgUrl": "../public/images/img2.png",
+      "firstName": "Angelica",
+      "lastName": "Schuster",
+      "email": "Angelica.Schuster@dummyapis.com",
+      "contactNumber": 4605199914,
+      "age": 69,
+      "dob": "24/07/1954",
+      "salary": 2000000,
+      "address": "address2"
+    },
+    {
+      "id": "1003",
+      "imgUrl": "../public/images/img3.png",
+      "firstName": "Aurelio",
+      "lastName": "Stroman",
+      "email": "Aurelio.Stroman@dummyapis.com",
+      "contactNumber": 4160894636,
+      "age": 68,
+      "dob": "29/05/1955",
+      "salary": 300000,
+      "address": "Address3"
+    },
+    {
+      "id": "1004",
+      "imgUrl": "../public/images/img4.png",
+      "firstName": "Enamue",
+      "lastName": "White",
+      "email": "Aurelio.Stroman@dummyapis.com",
+      "contactNumber": 4160894636,
+      "age": 68,
+      "dob": "29/05/1955",
+      "salary": 300000,
+      "address": "Address4"
+    },
+    {
+      "id": "1005",
+      "imgUrl": "../public/images/img1.png",
+      "firstName": "Casimir",
+      "lastName": "Kovacek",
+      "email": "Casimir.Kovacek@dummyapis.com",
+      "contactNumber": 4445097507,
+      "age": 32,
+      "dob": "28/05/1991",
+      "salary": 1000000,
+      "address": "address1"
+    },
+    {
+      "id": "1006",
+      "imgUrl": "../public/images/img2.png",
+      "firstName": "Angelica",
+      "lastName": "Schuster",
+      "email": "Angelica.Schuster@dummyapis.com",
+      "contactNumber": 4605199914,
+      "age": 69,
+      "dob": "24/07/1954",
+      "salary": 2000000,
+      "address": "address2"
+    }
+  ]
+}

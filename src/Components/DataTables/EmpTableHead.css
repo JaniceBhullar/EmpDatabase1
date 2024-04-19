@@ -1,0 +1,53 @@
+.table-wrapper {
+  width:100%;
+}
+
+table {
+    display: box;
+    overflow: hidden;
+    border-collapse: collapse;
+    table-layout: auto;
+    border: 1px solid rgb(140 140 140);
+    border-radius:10px;
+    white-space: nowrap;
+    width: 100em;
+    /* max-width:80%; */
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin: 5px;;
+    overflow: auto;
+  }
+  
+  thead,
+  tfoot {
+    background-color: rgb(160, 40, 230);
+    -webkit-text-fill-color: aliceblue;
+  }
+  
+  th,
+  td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+  }
+  
+  td:last-of-type {
+    text-align: center;
+  }
+  
+  /* tbody > tr:nth-of-type(even) {
+    background-color: rgb(240, 245, 244);
+  } */
+  
+  tfoot th {
+    text-align: right;
+  }
+  
+  tfoot td {
+    font-weight: bold;
+  }
+
+  .btn {
+    display: block;
+    margin: auto;
+  }
+  
