@@ -4,7 +4,7 @@ type EmpEditableProps = {
   emp: UserData;
   editData: UserData;
   handleEmpChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleEditSubmit: () => void;
+  handleEditSubmit: (e: React.SyntheticEvent<EventTarget>) => void;
   handleCancelClick: () => void;
 };
 

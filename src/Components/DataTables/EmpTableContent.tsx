@@ -33,7 +33,7 @@ export default function EmpTableContent({
       <td>{emp.salary}</td>
       <td>{emp.address}</td>
       <td>
-        <BsFillTrashFill onClick={() => onDelete(emp.id)} />
+        <BsFillTrashFill onClick={() => onDelete(+emp.id)} />
       </td>
       <td>
         <BsFillPencilFill onClick={() => handleEditClick(emp)} />

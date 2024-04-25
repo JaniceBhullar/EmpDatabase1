@@ -9,14 +9,13 @@ export type EmpTableProps = {
   editID: number;
   setEmpDb: (value: UserData[]) => void;
   onDelete: (id: number) => void;
-  handleSubmit: (newEmp: UserData) => void;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmitForm: (e: React.SyntheticEvent<EventTarget>) => void;
+  handleNewEmpInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleNewEmpSubmit: (e: React.SyntheticEvent<EventTarget>) => void;
   closeModal: () => void;
   setModalOpen: (value: boolean) => void;
   handleEditClick: (emp: UserData) => void;
   handleEmpChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleEditSubmit: () => void;
+  handleEditSubmit: (e: React.SyntheticEvent<EventTarget>) => void;
   handleCancelClick: () => void;
 };
 
@@ -27,9 +26,8 @@ export default function EmpTable({
   editID,
   setEmpDb,
   onDelete,
-  handleSubmit,
-  handleInputChange,
-  handleSubmitForm,
+  handleNewEmpInput,
+  handleNewEmpSubmit,
   modalOpen,
   setModalOpen,
   closeModal,
@@ -37,7 +35,8 @@ export default function EmpTable({
   handleEmpChange,
   handleEditSubmit,
   handleCancelClick,
-}: EmpTableProps) {
+}: EmpTableProps)
+{
   return (
     <>
       {empDb.length ? (
@@ -45,15 +44,14 @@ export default function EmpTable({
           empDb={empDb}
           newEmp={newEmp}
           editData={editData}
-          editID={editID}
+          editID={editID} 
           setEmpDb={setEmpDb}
           onDelete={onDelete}
           modalOpen={modalOpen}
           closeModal={closeModal}
           setModalOpen={setModalOpen}
-          handleSubmit={handleSubmit}
-          handleInputChange={handleInputChange}
-          handleSubmitForm={handleSubmitForm}
+          handleNewEmpInput={handleNewEmpInput}
+          handleNewEmpSubmit={handleNewEmpSubmit}
           handleEditClick={handleEditClick}
           handleEmpChange={handleEmpChange}
           handleEditSubmit={handleEditSubmit}

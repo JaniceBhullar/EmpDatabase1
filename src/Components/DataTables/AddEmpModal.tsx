@@ -3,20 +3,17 @@ import { type UserData } from "../../App";
 import { Button, Modal } from "react-bootstrap";
 
 type ModalProps = {
-  empDb: UserData[];
   closeModal: () => void;
   newEmp: UserData;
-  handleSubmit: (newEmp: UserData) => void;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmitForm: (e: React.SyntheticEvent<EventTarget>) => void;
+  handleNewEmpInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleNewEmpSubmit: (e: React.SyntheticEvent<EventTarget>) => void;
 };
 
 export default function AddEmpModal({
-  empDb,
   closeModal,
-  handleInputChange,
+  handleNewEmpInput,
   newEmp,
-  handleSubmitForm,
+  handleNewEmpSubmit,
 }: ModalProps) {
   return (
     <>
@@ -36,16 +33,16 @@ export default function AddEmpModal({
 
           <Modal.Body>
             <form>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="id">ID</label>
                 <input
                   name="id"
                   id="id"
                   type="readOnly"
-                  value={Math.max(...empDb.map((emp) => emp.id)) + 1}
-                  onChange={handleInputChange}
+                  value={currMaxID + 1}
+                  onChange={handleNewEmpInput}
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="imgUrl">Image URL</label>
                 <input
@@ -53,7 +50,7 @@ export default function AddEmpModal({
                   id="imgUrl"
                   type="text"
                   value={newEmp.imgUrl}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -63,7 +60,7 @@ export default function AddEmpModal({
                   id="firstName"
                   type="text"
                   value={newEmp.firstName}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -73,7 +70,7 @@ export default function AddEmpModal({
                   id="lastName"
                   type="text"
                   value={newEmp.lastName}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -83,7 +80,7 @@ export default function AddEmpModal({
                   id="email"
                   type="text"
                   value={newEmp.email}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -93,7 +90,7 @@ export default function AddEmpModal({
                   id="number"
                   type="text"
                   value={newEmp.contactNumber}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -103,7 +100,7 @@ export default function AddEmpModal({
                   id="age"
                   type="text"
                   value={newEmp.age}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -113,7 +110,7 @@ export default function AddEmpModal({
                   id="dob"
                   type="text"
                   value={newEmp.dob}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -123,7 +120,7 @@ export default function AddEmpModal({
                   id="salary"
                   type="text"
                   value={newEmp.salary}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
               <div className="form-group">
@@ -133,14 +130,18 @@ export default function AddEmpModal({
                   id="address"
                   type="text"
                   value={newEmp.address}
-                  onChange={handleInputChange}
+                  onChange={handleNewEmpInput}
                 />
               </div>
             </form>
           </Modal.Body>
 
           <Modal.Footer>
-            <Button type="submit" variant="primary" onClick={handleSubmitForm}>
+            <Button
+              type="submit"
+              variant="primary"
+              onClick={handleNewEmpSubmit}
+            >
               Submit
             </Button>
             <Button variant="secondary" onClick={closeModal}>

@@ -15,9 +15,8 @@ export type EmpDataProps = {
   setModalOpen: (value: boolean) => void;
   setEmpDb: (value: UserData[]) => void;
   onDelete: (id: number) => void;
-  handleSubmit: (newEmp: UserData) => void;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmitForm: (e: React.SyntheticEvent<EventTarget>) => void;
+  handleNewEmpInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleNewEmpSubmit: (e: React.SyntheticEvent<EventTarget>) => void;
   handleEditClick: (emp: UserData) => void;
   handleEmpChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleEditSubmit: () => void;
@@ -33,9 +32,8 @@ export default function EmpTableHead({
   closeModal,
   setModalOpen,
   onDelete,
-  handleSubmit,
-  handleInputChange,
-  handleSubmitForm,
+  handleNewEmpInput,
+  handleNewEmpSubmit,
   handleEditClick,
   handleEmpChange,
   handleEditSubmit,
@@ -65,7 +63,7 @@ export default function EmpTableHead({
           {empDb.map((emp) => (
             <tr key={emp.id}>
               <>
-                {editID === emp.id ? (
+                {editID === +emp.id ? (
                   <EmpTableEditable
                     emp={emp}
                     editData={editData}
@@ -92,11 +90,9 @@ export default function EmpTableHead({
       </div>
       {modalOpen && (
         <AddEmpModal
-          empDb={empDb}
           newEmp={newEmp}
-          handleSubmit={handleSubmit}
-          handleInputChange={handleInputChange}
-          handleSubmitForm={handleSubmitForm}
+          handleNewEmpInput={handleNewEmpInput}
+          handleNewEmpSubmit={handleNewEmpSubmit}
           closeModal={closeModal}
         />
       )}

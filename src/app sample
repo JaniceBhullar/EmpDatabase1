@@ -4,14 +4,13 @@ import Header from "./Components/UI/Header";
 import Footer from "./Components/UI/Footer";
 import { Container } from "react-bootstrap";
 import "../bootstrap.min.css";
+import apiRequest from "./Components/DataTables/apiRequest";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
-// import Missing from "./Components/Missing";
+import Missing from "./Components/Missing";
 import NavBar from "./Components/UI/NavBar";
 import { AxiosResponse } from "axios";
 import client from "./api/client";
-import MedicalDetails from "./Components/DataTables/Medical/MedicalDetails";
-import Bonus from "./Components/DataTables/Bonus";
 
 export type UserData = {
   id: number;
@@ -24,16 +23,13 @@ export type UserData = {
   dob: string;
   salary: number;
   address: string;
-  dependents: number;
-  policy: string;
-  claimedAmount: number;
 };
 
-// export interface ApiError {
-//   message: string;
-//   description: string;
-//   statusCode: string | number;
-// }
+export interface ApiError {
+  message: string;
+  description: string;
+  statusCode: string | number;
+}
 
 // type CRUDOptions = {
 //   method: string;
@@ -41,7 +37,7 @@ export type UserData = {
 //   body: unknown;
 // };
 
-// const API_URL = "http://localhost:8000/data";
+const API_URL = "http://localhost:8000/data";
 
 function App() {
   const [empDb, setEmpDb] = useState<UserData[]>([]);
@@ -56,17 +52,13 @@ function App() {
     dob: "",
     salary: 0,
     address: "",
-    dependents: 0,
-    policy: "",
-    claimedAmount: 0,
   });
-  // const [fetchError, setFetchError] = useState<ApiError | string | null>(null);
-  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [fetchError, setFetchError] = useState<ApiError | string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [editID, setEditID] = useState<number>(-1);
+  const [editID, setEditID] = useState<number>();
   const [editData, setEditData] = useState({
-    id: 0,
+    id: "",
     imgUrl: "",
     firstName: "",
     lastName: "",
@@ -76,10 +68,11 @@ function App() {
     dob: "",
     salary: 0,
     address: "",
-    dependents: 0,
-    policy: "",
-    claimedAmount: 0,
   });
+
+  // const currMaxID = Math.max(...empDb.map((emp) => emp.id).sort());
+  // const currMaxID = empDb.length ? empDb[empDb.length - 1].id + 1 : 1;
+  // console.log(currMaxID)
 
   const closeModal = () => {
     setModalOpen(false);
@@ -90,7 +83,9 @@ function App() {
       try {
         const response = await client.get("/data");
         // if (!response.ok) throw Error("No response received");
-        setEmpDb(response.data);
+
+        const dataItems = response.data;
+        setEmpDb(dataItems);
         setIsLoading(false);
         setFetchError(null);
       } catch (err) {
@@ -138,13 +133,14 @@ function App() {
     //   body: JSON.stringify(newEmp),
     // };
     // const result = await apiRequest(API_URL, postOptions);
-
     const currMaxID = Math.max(...empDb.map((emp) => emp.id).sort()) + 1;
+    console.log(currMaxID);
     const newEmployee = { ...newEmp, id: currMaxID };
 
     try {
       const response: AxiosResponse = await client.post("/data", newEmployee);
-      const allEmp = [...empDb, response.data];
+      console.log(response);
+      const allEmp = [...empDb, ...response.data];
       setEmpDb(allEmp);
       setFetchError(null);
       setNewEmp({
@@ -158,9 +154,6 @@ function App() {
         dob: "",
         salary: 0,
         address: "",
-        dependents: 0,
-        policy: "",
-        claimedAmount: 0,
       });
     } catch (err) {
       setFetchError(err.message);
@@ -168,38 +161,37 @@ function App() {
     closeModal();
   };
 
-  const handleDeleteEmp = (targetId: number) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this employee"
-    );
-    const newEmp = [...empDb];
-    const index = newEmp.findIndex((emp) => emp.id === targetId);
-    newEmp.splice(index, 1);
-
-    if (confirmed) setEmpDb(newEmp);
-  };
-
-  // async function handleDeleteEmp(targetId: number) {
-
-  //   try {
-  //     // Make a DELETE request to the API with the given ID
-  //     const response = await client({
-  //       url: "/data/" + targetId,
-  //       method: "delete",
-  //     });
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     // Log any errors that occur
-  //     console.error(error);
-  //   }
-  // }
-
-  // const handleDeleteEmp = (targetId: number) => {
-  //   client.delete("/data/${targetId}").then((res) => {
-  //     const userToDelete = empDb.filter((emp) => emp.id !== targetId);
-  //     setEmpDb(userToDelete);
-  //   });
+  // const handleNewEmp = (newEmp: UserData) => {
+  //   setEmpDb((currEmployees) => {
+  //     return [...currEmployees, { ...newEmp, id: currMaxID + 1 }];
+  //   })
   // };
+
+  // const handleDeleteEmp = async (targetId: number) => {
+
+  //   setEmpDb((employees): UserData[] =>
+  //     employees.filter((emp: UserData) => emp.id !== targetId)
+  //   );
+
+  //   const deleteOptions = { method: "DELETE" };
+  //   const reqURL = `${API_URL}/${targetId}`;
+  //   const result = await apiRequest(reqURL, deleteOptions);
+  //   if (result) setFetchError(result);
+
+  //   // client.delete(`${targetId}`);
+
+  // };
+
+  const handleDeleteEmp = async (targetId: number) => {
+    try {
+      await client.delete(`/data/${targetId}`);
+      setEmpDb((employees): UserData[] =>
+        employees.filter((emp: UserData) => emp.id !== targetId)
+      );
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+  };
 
   const handleEditClick = (emp: UserData) => {
     setEditID(emp.id);
@@ -215,9 +207,6 @@ function App() {
       dob: emp.dob,
       salary: emp.salary,
       address: emp.address,
-      dependents: emp.dependents,
-      policy: emp.policy,
-      claimedAmount: emp.claimedAmount,
     };
     setEditData(editFormValues);
   };
@@ -231,34 +220,7 @@ function App() {
     });
   };
 
-  // const handleEditSubmit = (e: React.SyntheticEvent<EventTarget>) => {
-  //   e.preventDefault();
-  //   const editedContact = {
-  //     id: editID,
-  //     imgUrl: editData.imgUrl,
-  //     firstName: editData.firstName,
-  //     lastName: editData.lastName,
-  //     email: editData.email,
-  //     contactNumber: editData.contactNumber,
-  //     age: editData.age,
-  //     dob: editData.dob,
-  //     salary: editData.salary,
-  //     address: editData.address,
-  //     dependents: editData.dependents,
-  //     policy: editData.policy,
-  //     claimedAmount: editData.claimedAmount,
-  //   };
-
-  //   const newEmpDb = [...empDb];
-  //   const index = empDb.findIndex((emp) => emp.id === editedContact.id);
-
-  //   newEmpDb[index] = editedContact;
-  //   setEmpDb(newEmpDb);
-  //   setEditID(-1);
-  // };
-
-  const handleEditSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
-    e.preventDefault();
+  const handleEditSubmit = async () => {
     const editedContact = {
       id: editID,
       imgUrl: editData.imgUrl,
@@ -270,38 +232,29 @@ function App() {
       dob: editData.dob,
       salary: editData.salary,
       address: editData.address,
-      dependents: editData.dependents,
-      policy: editData.policy,
-      claimedAmount: editData.claimedAmount,
     };
 
-    try {
-      const result = await client.put("/data", editedContact);
-      const newEmpDb = [...empDb];
-      const index = result.data.findIndex((emp) => emp.id === editedContact.id);
+    const newEmp = [...empDb];
+    console.log(newEmp);
 
-      newEmpDb[index] = editedContact;
-      setEmpDb(newEmpDb);
-      setEditID(-1);
-      // setEmpDb(
-      //   empDb.map((emp) =>
-      //     emp.id === editID ? { ...result.data } : editedContact
-      //   )
-      // );
-      // setEditID(-1);
-    } catch (err) {
-      console.log(err.message);
-    }
+    const editIndex = empDb.findIndex((emp) => emp.id === editID);
+
+    newEmp[editIndex] = editedContact;
+    setEmpDb(newEmp);
+
+    const updateOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newEmp),
+    };
+    const reqURL = `${API_URL}/${editedContact.id}`;
+    const result = await apiRequest(reqURL, updateOptions);
+    if (result) setFetchError(result);
+
+    setEditID(-1);
   };
-
-  // const updateOptions = {
-  //   method: "PATCH",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(newEmp),
-  // };
-  // const reqURL = `${API_URL}/${editedContact.id}`;
 
   const handleCancelClick = () => {
     setEditID(-1);
@@ -311,7 +264,6 @@ function App() {
     <>
       <NavBar />
       <Header text="Cigno Logistics" />
-
       <div className="content-container">
         <main>
           <Container>
@@ -320,7 +272,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 {!fetchError && !isLoading && (
                   <Route
-                    path="/empDashboard"
+                    path="/employeeDetails"
                     element={
                       <EmpTable
                         empDb={empDb}
@@ -342,13 +294,7 @@ function App() {
                     }
                   />
                 )}
-                <Route
-                  path="/medDashboard"
-                  element={<MedicalDetails empDb={empDb} />}
-                />
-
-                <Route path="/bonus" element={<Bonus />} />
-                {/* <Route path="*" element={<Missing />} /> */}
+                <Route path="*" element={<Missing />} />
               </Routes>
             </BrowserRouter>
           </Container>

@@ -1,0 +1,31 @@
+ // const handleNewEmp = (newEmp: UserData) => {
+  //   setEmpDb((currEmployees) => {
+  //     return [...currEmployees, { ...newEmp, id: currMaxID + 1 }];
+  //   })
+  // };
+
+  // const handleDeleteEmp = async (targetId: number) => {
+  //   const deleteOptions = { method: "DELETE" };
+  //   const reqURL = `${API_URL}/${targetId}`;
+  //   const result = await apiRequest(reqURL, deleteOptions);
+  //   if (result) setFetchError(result);
+
+  //   setEmpDb((employees): UserData[] =>
+  //     employees.filter((emp: UserData) => emp.id !== targetId)
+  //   );
+  // };
+
+  //   // client.delete(`${targetId}`);
+
+  // };
+
+  // const handleDeleteEmp = async (targetId: number) => {
+  //   try {
+  //     await client.delete(`/data/${targetId}`);
+  //     setEmpDb((employees): UserData[] =>
+  //       employees.filter((emp: UserData) => emp.id !== targetId)
+  //     );
+  //   } catch (err) {
+  //     console.log(`Error: ${err.message}`);
+  //   }
+  // };
